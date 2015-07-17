@@ -1,0 +1,12 @@
+<div class="jumbotron text-center">
+	<h1>Welcome NodeJS App Sample!</h1>
+
+	<div ng-if="!main.loggedIn">
+		<p>Login to navigate.</p>
+		<a href="/login" class="btn btn-primary">Login</a>
+	</div>
+
+	<div ng-if="main.loggedIn">
+		<a href="/portal" class="btn btn-primary">Access Portal</a>
+	</div>
+</div>
