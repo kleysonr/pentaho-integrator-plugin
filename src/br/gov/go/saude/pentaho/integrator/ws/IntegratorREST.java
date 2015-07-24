@@ -120,6 +120,7 @@ public class IntegratorREST {
 		
 	}
 
+	/*
 	@POST
 	@Path("/go")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -206,6 +207,7 @@ public class IntegratorREST {
 		}
 		
 	}
+	*/
 	
 	// Authentication based on a token
 	private String AuthToken(String myToken, String myUrlEncoded) throws SQLException, Exception
@@ -215,9 +217,11 @@ public class IntegratorREST {
 	
 	// TODO
 	// Authentication based on the Google Authenticator TOTP (Time-based One-time Password Algorithm)
+	/*
 	private String AuthTotp(String myToken, String myUrlEncoded) throws SQLException, Exception
 	{
 		return null;
 	}
+	*/
 
 }
