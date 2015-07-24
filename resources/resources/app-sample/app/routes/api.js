@@ -14,11 +14,10 @@ module.exports = function(app, express) {
 	// route to authenticate a user (POST http://localhost:<port>/api/authenticate)
 	apiRouter.post('/authenticate', function(req, res) {
 
-		var userDefault = 'admin';
 	    var passwordDefault = 'password';
 
 	    // no user with that username was found
-	    if (userDefault != req.body.username) 
+	    if (req.body.username != "admin" && req.body.username != "suzy" ) 
 	    {
 	    	res.json({ 
 	      		success: false, 
@@ -36,11 +35,10 @@ module.exports = function(app, express) {
 	      	}
 	      	else
 	      	{
-
 	        	// if user is found and password is right
 	        	// create a token
 	        	var token = jwt.sign({
-	        		name: 'Administrator',
+	        		name: (req.body.username == "admin"?'Administrator':'Suzy Lee'),
 	        		username: req.body.username
 	        	}, superSecret, {
 	          		expiresInMinutes: 1440 // expires in 24 hours
