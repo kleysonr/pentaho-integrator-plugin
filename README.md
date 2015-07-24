@@ -20,9 +20,7 @@ Use the Marketplace
 
 To get more information about the configuration and how to test it using a sample application, read
 
-```
 http://kleysonrios.blogspot.com.br/2015/07/integrator-plugin-for-pentaho-5.html
-```
 
 # Contributions
 
