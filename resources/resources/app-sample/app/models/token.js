@@ -7,6 +7,8 @@ var conString = config.postgresConnectionString;
 exports.createTable = function() {
 
  	pg.connect(conString, function(err, client, done) {
+ 		
+ 		if (err) console.log(err);
 
  		client.query(config.createTableSql, function(err, result) {
 
@@ -25,21 +27,23 @@ exports.createTable = function() {
 // Create tokens bi table
 exports.insertToken = function(values, cb) {
 
-  pg.connect(conString, function(err, client, done) {
+	pg.connect(conString, function(err, client, done) {
 
-    client.query(config.insertTokenSql, values, function(err, result) {
+		if (err) console.log(err);
 
-          // handle an error from the query
-          if(handleError(client, err, done)) return;
+		client.query(config.insertTokenSql, values, function(err, result) {
+
+			// handle an error from the query
+			if(handleError(client, err, done)) return;
           
-          done();
+			done();
 
-          cb();
+			cb();
 
-          return true;
-    });
+			return true;
+		});
 
-  });
+	});
 
 };
 
