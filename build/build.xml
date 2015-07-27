@@ -55,7 +55,8 @@
 	<!-- generates the runnable jar -->
     <target name="jar" depends="clean,compile">
         <mkdir dir="${dist.dir}"/>
-		<mkdir dir="${dist.dir}/lib" />
+		<mkdir dir="${dist.dir}/integrator" />
+		<mkdir dir="${dist.dir}/integrator/lib" />
 
         <jar destfile="${jar.file}" basedir="${classes.dir}">
             <manifest>
@@ -65,17 +66,17 @@
     </target>
 	
 	<target name="move" depends="jar">
-		<copy todir="${dist.dir}/">
+		<copy todir="${dist.dir}/integrator">
 			<fileset dir="${resources.dir}/">
 			      <include name="**"/>
 			</fileset>
 		</copy>
-		<copy todir="${dist.dir}/lib">
+		<copy todir="${dist.dir}/integrator/lib">
 			<fileset dir="${lib.dir}/">
 			      <include name="**/*.jar"/>
 			</fileset>
 		</copy>
-		<zip destfile="${dist.dir}/../${app.name}.zip" basedir="${dist.dir}" />
+		<zip destfile="${dist.dir}/../${app.name}-${prj.version}.zip" basedir="${dist.dir}" />
 		<!--
 		<delete file="${test.file}" verbose="true" />
 		<copy file="${jar.file}" tofile="${test.file}" verbose="true" />
