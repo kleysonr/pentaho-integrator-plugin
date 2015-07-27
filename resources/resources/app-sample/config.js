@@ -1,7 +1,7 @@
 module.exports = {
 	'port': process.env.PORT || 1010,
 	'secret': 'password',
-	'postgresConnectionString': 'postgres://postgres:postgresuser@localhost:5432/postgres',
+	'postgresConnectionString': 'postgres://postgres:postgres@localhost:5432/postgres',
 	'createTableSql': 'CREATE TABLE public.tokens_bi(username character varying(32) NOT NULL, token character varying(100) NOT NULL, url character varying(255) NOT NULL)',
 	'insertTokenSql': 'INSERT INTO tokens_bi(username, token, url) VALUES ($1, $2, $3)',
 	'integratorPlugin': 'http://localhost:8080/pentaho/plugin/integrator/api/go',
