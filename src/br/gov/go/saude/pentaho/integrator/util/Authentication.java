@@ -1,15 +1,12 @@
 package br.gov.go.saude.pentaho.integrator.util;
 
 import java.lang.reflect.Method;
-import java.net.URI;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.UriInfo;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 
 import br.gov.go.saude.pentaho.integrator.security.Auth;
@@ -24,13 +21,12 @@ import br.gov.go.saude.pentaho.integrator.security.Auth;
 
 public class Authentication {
 
-	public static AuthenticationReturn authenticate(HttpServletRequest request, HttpServletResponse response, UriInfo info, String myType, String myToken, String myUrlEncoded) 
+	public static Map<String, Object> authenticate(HttpServletRequest request, HttpServletResponse response, UriInfo info, String myType, String myToken, String myUrlEncoded) 
 	{
-		
 		AuthenticationReturn ret = new AuthenticationReturn(true, 200, "", null);
 		
 		// Checking parameters
-		if( "".equalsIgnoreCase(myType) || myType == null || "".equalsIgnoreCase(myToken) || myToken == null || "".equalsIgnoreCase(myUrlEncoded) || myUrlEncoded == null ) 
+		if( "".equalsIgnoreCase(myType) || myType == null || "undefined".equalsIgnoreCase(myType) || "".equalsIgnoreCase(myToken) || myToken == null || "undefined".equalsIgnoreCase(myToken) || "".equalsIgnoreCase(myUrlEncoded) || myUrlEncoded == null || "undefined".equalsIgnoreCase(myUrlEncoded) ) 
 		{
 			ret.setOk(false);
 			ret.setStatus(400);
@@ -64,12 +60,7 @@ public class Authentication {
 				{
 					if ( AuthenticationHelper.becomeUser( principalName ) != null )
 					{
-						String myUrl = new String( Base64.decodeBase64(myUrlEncoded.getBytes()) );
-
-						// Workaround for java.net.URISyntaxException: Illegal character
-						URI pentahoBaseUrl = info.getBaseUri().resolve("../../" + URLEncoder.encode(URLDecoder.decode(myUrl, "UTF-8"), "UTF-8").replaceAll("\\%2[fF]", "/").replaceAll("\\+", "%20") );
-
-						ret.setUrl(pentahoBaseUrl);
+						return ret.getMap();
 					} 
 					else 
 					{
@@ -77,7 +68,6 @@ public class Authentication {
 						ret.setStatus(400);
 						ret.setMessage("Integrator Error: Invalid user.");
 					}
-
 				}
 				
 			} catch (NoSuchMethodException e) {
@@ -100,7 +90,7 @@ public class Authentication {
 
 		}
 		
-		return ret;
+		return ret.getMap();
 	}
 
 }

@@ -1,6 +1,8 @@
 package br.gov.go.saude.pentaho.integrator.util;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 
@@ -57,4 +59,14 @@ public class AuthenticationReturn {
 		this.url = url;
 	}
 
+	
+	public Map<String, Object> getMap() {
+		HashMap<String, Object> map = new HashMap<>();
+		
+		map.put("status", status);
+		map.put("message", message);
+		map.put("ok", ok);
+		
+		return map;
+	}
 }

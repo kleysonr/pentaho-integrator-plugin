@@ -30,7 +30,10 @@ CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
     <bean id="api" class="org.pentaho.platform.web.servlet.JAXRSPluginServlet"/>
     <bean id="integrator.api" class="br.gov.go.saude.pentaho.integrator.ws.IntegratorREST"/>
     
+    <!-- Export Authenticate Method -->
+    <bean id="integrator.auth" class="br.gov.go.saude.pentaho.integrator.util.Authentication"/>
     
+    <!-- Plugin init process by BeanFactoryPostProcessor -->
 	<bean class="org.pentaho.platform.engine.core.system.objfac.spring.ApplicationContextPentahoSystemRegisterer" scope="singleton"/>
     <bean id="integratorTemplateFactory" class="br.gov.go.saude.pentaho.integrator.engine.IntegratorTemplateFactory">
     	<pen:publish as-type="CLASSES">
