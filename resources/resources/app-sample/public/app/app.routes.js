@@ -25,7 +25,9 @@ angular.module('app.routes', ['ngRoute'])
 
 		// Upload form
 		.when('/upload', {
-			templateUrl: 'app/views/pages/users/formUpload.html'
+			templateUrl: 'app/views/pages/users/formUpload.html',
+			controller: 'formController',
+			controllerAs: 'form'
 		});
 
 	$locationProvider.html5Mode(true);

@@ -1,4 +1,4 @@
-angular.module('userApp', ['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'pentahoCtrl', 'pentahoService'])
+angular.module('userApp', ['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'pentahoCtrl', 'pentahoService', 'formCtrl', 'formService'])
 
 // application configuration to integrate token into requests
 .config(function($httpProvider) {

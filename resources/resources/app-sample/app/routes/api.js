@@ -116,6 +116,23 @@ module.exports = function(app, express) {
 
 	});
 
+	// Endpoint to Form Upload
+	// ----------------------------------------------------
+	apiRouter.get('/form', function(req, res) {
+
+		var urlEncoded = new Buffer(config.resources.UploadPlugin).toString('base64');
+		var newToken = (new Date).getTime();
+
+		//Create token to access
+		token.insertToken([req.decoded.username, newToken, urlEncoded], function(){
+
+			res.json({url: config.uploadfilePlugin + '?type=token&token=' + newToken + '&urlEncoded=' + urlEncoded});
+
+		});
+
+
+	});
+	
 
 	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {

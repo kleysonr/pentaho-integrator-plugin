@@ -1,10 +1,17 @@
 <div class="alert alert-info">
-	<h4>Not implemented yet.</h4>
-	<p>For this form work properly it's necessary install the pentaho-uploadfile-plugin.</p>
+	<h4>For this form work properly it's necessary install the pentaho-uploadfile-plugin.</h4></p>
 </div>
 
-
-<form action="http://localhost:8080/pentaho/plugin/integrator/api/go?type=token&token=1436991744559&urlEncoded=L3BlbnRhaG8vcGx1Z2luL3VwbG9hZGZpbGUvYXBpL3NlbmQ=" method="post" enctype="multipart/form-data" >
-	<input type="file" name="file" id="file">
-	<input type="submit" value="Upload Image" name="submit">
+<form id="formUpload" name="formUpload" ng-submit="form.send()">
+	<br />Solution:             <input type="text" name="solution" id="solution" ng-model="myForm.solution" /><br />
+	<br />Prefix:               <input type="text" name="prefix" id="prefix" ng-model="myForm.prefix" /><br />
+	<br />New file extension:   <input type="text" name="newExt" id="newExt" ng-model="myForm.newExt" /><br />
+	<br />File Description:     <TEXTAREA name="description" id="description" ng-model="myForm.description" style="width:370px;height:100px;background:#ebebe4;border-color:rgb(127,157,185);" ROWS=30 COLS=60></TEXTAREA></TEXTAREA><br />
+	<br />File:                 <input type="file" name="file" size="37" onchange="angular.element(this).scope().setFile(this)" /><br />
+	<input type="submit" name="submit">
 </form>
+<br /><br />
+<div id="message-box" class="alert alert-danger" role="alert" style="display: none;">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <div id="message-alert"></div>
+</div>

@@ -14,6 +14,11 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 
 	<!-- JS -->
+	<!-- load bootstrap and jquery from CDN -->
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="//fgnass.github.io/spin.js/spin.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	
 	<!-- load angular and angular-route via CDN -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.js"></script>
@@ -22,10 +27,12 @@
 	<!-- controllers -->
 	<script src="app/controllers/mainCtrl.js"></script>
 	<script src="app/controllers/pentahoCtrl.js"></script>
+	<script src="app/controllers/formCtrl.js"></script>
 
 	<!-- services -->
 	<script src="app/services/authService.js"></script>
 	<script src="app/services/pentahoService.js"></script>
+	<script src="app/services/formService.js"></script>
 
 	<!-- main Angular app files -->
 	<script src="app/app.routes.js"></script>
@@ -43,6 +50,9 @@
 			<ul class="nav navbar-nav">
 				<li><a href="/portal"><span class="glyphicon glyphicon-th"></span> Portal</a></li>
 			</ul>
+			<ul class="nav navbar-nav">
+				<li><a href="/upload"><span class="glyphicon glyphicon-th"></span> Upload</a></li>
+			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
 				<li ng-if="main.loggedIn" class="navbar-text">Hello {{ main.user.name }}!</li>
@@ -54,7 +64,7 @@
 
 <main class="container">
 	<!-- ANGULAR VIEWS -->
-	<div ng-view></div>
+	<div id="principal" ng-view></div>
 </main>
 
 </body>

@@ -50,6 +50,8 @@ exports.insertToken = function(values, cb) {
 var handleError = function(client, err, done) {
       // no error occurred, continue with the request
       if(!err) return false;
+      
+      console.log(err);
 
       // An error occurred, remove the client from the connection pool.
       // A truthy value passed to done will remove the connection from the pool
