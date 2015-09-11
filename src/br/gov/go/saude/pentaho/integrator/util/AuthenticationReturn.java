@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * 
  * @author Kleyson Rios<br>
- *         Secretaria de Saúde do Estado de Goiás<br>
+ *         Secretaria de Saude do Estado de Goias<br>
  *         www.saude.go.gov.br
  *
  */
