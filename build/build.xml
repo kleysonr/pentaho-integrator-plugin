@@ -77,10 +77,11 @@
 			</fileset>
 		</copy>
 		<zip destfile="${dist.dir}/../${app.name}-${prj.version}.zip" basedir="${dist.dir}" />
-		<!--
+		<!-- 
 		<delete file="${test.file}" verbose="true" />
 		<copy file="${jar.file}" tofile="${test.file}" verbose="true" />
 		-->
+		
 		<delete dir="${dist.dir}" />
 	</target>
 
