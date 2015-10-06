@@ -3,7 +3,7 @@ package br.gov.go.saude.pentaho.integrator.ws;
 /**
  * 
  * @author Kleyson Rios<br>
- *         Secretaria de Saúde do Estado de Goiás<br>
+ *         Secretaria de Saude do Estado de Goias<br>
  *         www.saude.go.gov.br
  *         
  * @contribution Marcello Pontes<br>
@@ -11,11 +11,8 @@ package br.gov.go.saude.pentaho.integrator.ws;
  *
  */
 
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,19 +57,7 @@ public class IntegratorREST {
 
 			String myUrl = new String( Base64.decodeBase64(myUrlEncoded.getBytes()) );
 
-			URI pentahoBaseUrl = null;
-			
-			try 
-			{
-				// Workaround for java.net.URISyntaxException: Illegal character
-				pentahoBaseUrl = info.getBaseUri().resolve("../../" + URLEncoder.encode(URLDecoder.decode(myUrl, "UTF-8"), "UTF-8").replaceAll("\\%2[fF]", "/").replaceAll("\\+", "%20") );
-			} 
-			catch (UnsupportedEncodingException e) 
-			{
-				e.printStackTrace();
-				return Response.status(500).type("text/plain").entity("Integrator Error: ERROR.").build();
-							
-			}
+			URI pentahoBaseUrl = info.getBaseUri().resolve("../../" + myUrl);
 			
 			return Response.temporaryRedirect(pentahoBaseUrl).build();
 		}
