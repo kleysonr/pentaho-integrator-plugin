@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<plugin title="integrator">
-
-    <static-paths>
-        <static-path url="/integrator/resources" localFolder="resources"/>
-    </static-paths>
-
-</plugin>

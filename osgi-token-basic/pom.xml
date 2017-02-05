@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <properties>
+    <project.groupId>com.pentaho.krios.plugins.osgi.integrator.token.basic</project.groupId>
+    <project.artifactId>integrator-token-basic</project.artifactId>
+    <project.version>0.0.1-SNAPSHOT</project.version>
+    <project.author>Kleyson Rios</project.author>
+    <project.url>http://kleysonrios.blogspot.com</project.url>
+  	<project.description>OSGI Integrator - Basic Token Plugin</project.description>
+  	<plugin.activator.class>com.pentaho.krios.plugins.osgi.integrator.token.basic.Activator</plugin.activator.class>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <dependency.pentaho.platform.version>7.0.0.0-25</dependency.pentaho.platform.version>
+  </properties>
+
+  <groupId>${project.groupId}</groupId>
+  <artifactId>${project.artifactId}</artifactId>
+  <version>${project.version}</version>
+  <packaging>bundle</packaging>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.3.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+			<Bundle-Name>${project.artifactId}</Bundle-Name>
+            <Bundle-Version>${project.version}</Bundle-Version>
+            <Bundle-SymbolicName>${project.groupId}.${project.artifactId};singleton:=false</Bundle-SymbolicName>
+			<Bundle-Activator>${plugin.activator.class}</Bundle-Activator>
+			<Bundle-Vendor>${project.author}</Bundle-Vendor>
+			<Bundle-Description>${project.description}</Bundle-Description>
+			<Bundle-DocURL>${project.url}</Bundle-DocURL>
+			<Export-Package>com.pentaho.krios.plugins.osgi.integrator.token.basic</Export-Package>
+            <Import-Package>com.pentaho.krios.plugins.osgi.integrator.manager.services;version="[1.0.0, 2.0)", org.osgi.framework, org.osgi.service.cm, org.apache.log4j, org.osgi.util.tracker, *</Import-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build> 
+
+  <name>${project.description}</name>
+  <url>${project.url}</url>
+  
+  <repositories>
+      <repository>
+          <id>pentaho-omni</id>
+          <name>pentaho omni</name>
+          <url>http://repository.pentaho.org/content/groups/omni</url>
+      </repository>
+  </repositories>  
+
+  <dependencies>
+  
+    <!-- platform (provided) dependencies -->
+    <dependency>
+      	<groupId>pentaho</groupId>
+      	<artifactId>pentaho-platform-api</artifactId>
+      	<version>${dependency.pentaho.platform.version}</version>
+      	<scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      	<groupId>pentaho</groupId>
+      	<artifactId>pentaho-platform-core</artifactId>
+      	<version>${dependency.pentaho.platform.version}</version>
+      	<scope>provided</scope>
+    </dependency>
+    
+	<dependency>
+    	<groupId>com.pentaho.krios.plugins.osgi.integrator.manager</groupId>
+    	<artifactId>integrator-manager</artifactId>
+    	<version>1.0.0</version>
+      	<scope>provided</scope>
+	</dependency>
+	
+	<dependency>
+    	<groupId>org.osgi</groupId>
+	    <artifactId>org.osgi.service.cm</artifactId>
+    	<version>1.5.0</version>
+        <scope>provided</scope>
+	</dependency>
+
+  </dependencies>
+</project>

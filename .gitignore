@@ -1,6 +1,4 @@
-/bin
-/.project
-
-/classes/*
-/dist/*
-/resources/resources/app-sample/node_modules/*
+.project
+.classpath
+*.class
+/*/target/*

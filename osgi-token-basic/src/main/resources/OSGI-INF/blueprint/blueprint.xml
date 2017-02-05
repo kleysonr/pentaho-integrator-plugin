@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" 
+		   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		   xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+           xsi:schemaLocation="
+  http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+  http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.1.0.xsd
+  ">
+
+  <!-- Default Plugin Properties -->
+  <cm:property-placeholder persistent-id="com.pentaho.krios.plugins.osgi.integrator.token.basic" update-strategy="reload">
+    <cm:default-properties>
+      <cm:property name="active" value="true"/>
+      <cm:property name="principalName" value="suzy"/>
+      <cm:property name="token" value="x1x1x1"/>
+      <cm:property name="userQueryParam" value="_USER"/>
+      <cm:property name="tokenQueryParam" value="_TOKEN"/>
+    </cm:default-properties>
+  </cm:property-placeholder>
+
+  <!-- Register Token Basic Service -->  
+  <bean id="tokenBasic" class="com.pentaho.krios.plugins.osgi.integrator.token.basic.TokenServiceImpl">
+    <property name="active" value="${active}" />
+    <property name="principalName" value="${principalName}" />
+    <property name="token" value="${token}" />
+    <property name="userQueryParam" value="${userQueryParam}" />
+    <property name="tokenQueryParam" value="${tokenQueryParam}" />
+  </bean>
+  
+  <service id="tokenBasicService" ref="tokenBasic"
+    interface="com.pentaho.krios.plugins.osgi.integrator.manager.services.ITokenService" />
+
+
+</blueprint>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+           xmlns:cxf="http://cxf.apache.org/blueprint/core"
+           xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs"
+           xsi:schemaLocation="
+                http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+                http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.1.0.xsd
+                http://cxf.apache.org/blueprint/jaxrs http://cxf.apache.org/schemas/blueprint/jaxrs.xsd
+                http://cxf.apache.org/blueprint/core http://cxf.apache.org/schemas/blueprint/core.xsd"
+           default-timeout="20000"
+           default-activation="lazy">
+
+
+	<!-- =================================== -->
+    <!-- REST Endpoints                      -->
+    <!-- =================================== -->
+
+    <!--
+        Apache cxf framework supports service APIs like JAX-WS and JAX-RS.
+        These services can speak a variety of protocols such as SOAP, XML/HTTP, RESTful HTTP,
+        or CORBA and work over a variety of transports such as HTTP, JMS or JBI.
+    -->
+    <cxf:bus id="integratorManagerCxfBus" />
+
+    <!-- this translates to /<webapp_name>/osgi/cxf/<ADDRESS>/<ENDPOINT_TERMINATION> -->
+    <jaxrs:server id="bp.cxf.jaxrs.service.endpoint" address="/integrator">
+        <jaxrs:serviceBeans>
+            <ref component-id="integrator.manager.rest.api" />
+        </jaxrs:serviceBeans>
+    </jaxrs:server>
+
+
+    <!-- ws admin endpoints bean -->
+    <bean id="integrator.manager.rest.api" class="com.pentaho.krios.plugins.osgi.integrator.manager.api.RestAdmin" />
+
+</blueprint>
