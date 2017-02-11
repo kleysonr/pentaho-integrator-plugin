@@ -10,14 +10,19 @@
     <project.url>http://kleysonrios.blogspot.com</project.url>
   	<project.description>OSGI Integrator - Basic Token Plugin</project.description>
   	<plugin.activator.class>com.pentaho.krios.plugins.osgi.integrator.token.basic.Activator</plugin.activator.class>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <dependency.pentaho.platform.version>7.0.0.0-25</dependency.pentaho.platform.version>
   </properties>
 
   <groupId>${project.groupId}</groupId>
   <artifactId>${project.artifactId}</artifactId>
   <version>${project.version}</version>
   <packaging>bundle</packaging>
+
+  <parent>
+    <groupId>com.pentaho.krios.plugins.osgi.integrator</groupId>
+    <artifactId>integrator-parent</artifactId>
+    <version>1.0.0</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>  
   
   <build>
     <plugins>
@@ -46,31 +51,8 @@
   <name>${project.description}</name>
   <url>${project.url}</url>
   
-  <repositories>
-      <repository>
-          <id>pentaho-omni</id>
-          <name>pentaho omni</name>
-          <url>http://repository.pentaho.org/content/groups/omni</url>
-      </repository>
-  </repositories>  
-
   <dependencies>
   
-    <!-- platform (provided) dependencies -->
-    <dependency>
-      	<groupId>pentaho</groupId>
-      	<artifactId>pentaho-platform-api</artifactId>
-      	<version>${dependency.pentaho.platform.version}</version>
-      	<scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      	<groupId>pentaho</groupId>
-      	<artifactId>pentaho-platform-core</artifactId>
-      	<version>${dependency.pentaho.platform.version}</version>
-      	<scope>provided</scope>
-    </dependency>
-    
 	<dependency>
     	<groupId>com.pentaho.krios.plugins.osgi.integrator.manager</groupId>
     	<artifactId>integrator-manager</artifactId>
