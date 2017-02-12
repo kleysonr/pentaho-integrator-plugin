@@ -29,7 +29,7 @@
   </bean>
   
   <service id="tokenBasicService" ref="tokenBasic"
-    interface="com.pentaho.krios.plugins.osgi.integrator.manager.services.ITokenService" />
+    interface="com.pentaho.krios.plugins.osgi.integrator.common.services.ITokenService" />
 
 
 </blueprint>

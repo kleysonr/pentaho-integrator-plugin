@@ -1,4 +1,4 @@
-package com.pentaho.krios.plugins.osgi.integrator.manager.services;
+package com.pentaho.krios.plugins.osgi.integrator.common.services;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;

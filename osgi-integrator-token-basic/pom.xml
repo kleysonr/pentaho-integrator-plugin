@@ -12,9 +12,9 @@
   	<plugin.activator.class>com.pentaho.krios.plugins.osgi.integrator.token.basic.Activator</plugin.activator.class>
   </properties>
 
-  <groupId>${project.groupId}</groupId>
-  <artifactId>${project.artifactId}</artifactId>
-  <version>${project.version}</version>
+  <groupId>com.pentaho.krios.plugins.osgi.integrator.token.basic</groupId>
+  <artifactId>osgi-integrator-token-basic</artifactId>
+  <version>0.0.1</version>
   <packaging>bundle</packaging>
 
   <parent>
@@ -41,7 +41,7 @@
 			<Bundle-Description>${project.description}</Bundle-Description>
 			<Bundle-DocURL>${project.url}</Bundle-DocURL>
 			<Export-Package>com.pentaho.krios.plugins.osgi.integrator.token.basic</Export-Package>
-            <Import-Package>com.pentaho.krios.plugins.osgi.integrator.manager.services;version="[1.0.0, 2.0)", org.osgi.framework, org.osgi.service.cm, org.apache.log4j, org.osgi.util.tracker, *</Import-Package>
+            <Import-Package>com.pentaho.krios.plugins.osgi.integrator.common.services;version="[1.0.0, 2.0)", org.osgi.framework, org.osgi.service.cm, org.apache.log4j, org.osgi.util.tracker, *</Import-Package>
           </instructions>
         </configuration>
       </plugin>
@@ -53,6 +53,12 @@
   
   <dependencies>
   
+    <dependency>
+      	<groupId>com.pentaho.krios.plugins.osgi.integrator.common.services</groupId>
+      	<artifactId>osgi-integrator-common</artifactId>
+      	<version>1.0.0-SNAPSHOT</version>
+    </dependency>   
+      
 	<dependency>
     	<groupId>com.pentaho.krios.plugins.osgi.integrator.manager</groupId>
     	<artifactId>integrator-manager</artifactId>

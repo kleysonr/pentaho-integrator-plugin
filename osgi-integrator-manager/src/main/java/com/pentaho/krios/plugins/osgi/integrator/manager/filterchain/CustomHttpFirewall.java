@@ -21,7 +21,7 @@ import org.springframework.security.web.firewall.RequestRejectedException;
 
 import com.pentaho.krios.plugins.osgi.integrator.manager.IntegratorManagerServicesImpl;
 import com.pentaho.krios.plugins.osgi.integrator.manager.helpers.AuthenticationHelper;
-import com.pentaho.krios.plugins.osgi.integrator.manager.services.ITokenService;
+import com.pentaho.krios.plugins.osgi.integrator.common.services.ITokenService;
 
 public class CustomHttpFirewall extends DefaultHttpFirewall {
 	

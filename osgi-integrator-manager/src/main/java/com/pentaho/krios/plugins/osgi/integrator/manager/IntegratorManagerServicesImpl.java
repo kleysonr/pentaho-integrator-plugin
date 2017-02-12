@@ -6,10 +6,9 @@ import java.util.Map;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 
-import com.pentaho.krios.plugins.osgi.integrator.manager.models.Plugin;
-import com.pentaho.krios.plugins.osgi.integrator.manager.services.IService;
-import com.pentaho.krios.plugins.osgi.integrator.manager.services.ITokenService;
-import com.pentaho.krios.plugins.osgi.integrator.manager.services.IntegratorManagerService;
+import com.pentaho.krios.plugins.osgi.integrator.common.services.IService;
+import com.pentaho.krios.plugins.osgi.integrator.common.services.ITokenService;
+import com.pentaho.krios.plugins.osgi.integrator.common.services.IntegratorManagerService;
 
 public class IntegratorManagerServicesImpl implements IntegratorManagerService {
 	

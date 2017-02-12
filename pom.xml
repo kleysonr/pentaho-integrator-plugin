@@ -8,15 +8,15 @@
   </properties>
 
   <groupId>com.pentaho.krios.plugins.osgi.integrator</groupId>
-  <artifactId>integrator-parent</artifactId>
-  <version>1.0.0</version>
+  <artifactId>osgi-integrator-parent</artifactId>
   <packaging>pom</packaging>
   
   <name>OSGI Integrator - Parent</name>
   
   <modules>
+    <module>osgi-integrator-common</module>
     <module>osgi-integrator-manager</module>
-    <module>osgi-token-basic</module>
+    <module>osgi-integrator-token-basic</module>
   </modules>  
   
   <repositories>
@@ -42,8 +42,9 @@
       	<artifactId>pentaho-platform-core</artifactId>
       	<version>${dependency.pentaho.platform.version}</version>
       	<scope>provided</scope>
-    </dependency>
-    
+    </dependency> 
+
   </dependencies>
   
+  <version>1.0.0-SNAPSHOT</version>
 </project>

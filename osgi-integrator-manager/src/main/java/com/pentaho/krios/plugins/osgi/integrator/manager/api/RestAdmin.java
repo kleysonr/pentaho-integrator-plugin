@@ -7,12 +7,11 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pentaho.krios.plugins.osgi.integrator.common.services.ITokenService;
 import com.pentaho.krios.plugins.osgi.integrator.manager.IntegratorManagerServicesImpl;
 import com.pentaho.krios.plugins.osgi.integrator.manager.models.Plugin;
-import com.pentaho.krios.plugins.osgi.integrator.manager.services.ITokenService;
 
 /**
  * REST endpoints' base URI is <webapp>/osgi/cxf/<ADDRESS>/<ENDPOINT_TERMINATION>

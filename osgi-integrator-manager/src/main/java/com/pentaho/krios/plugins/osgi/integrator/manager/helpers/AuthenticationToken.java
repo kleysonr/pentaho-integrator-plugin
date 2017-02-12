@@ -41,12 +41,10 @@ public class AuthenticationToken extends AbstractAuthenticationToken implements 
 		return secret;
 	}	
 
-	@Override
 	public Object getCredentials() {
 		return getSecret();
 	}
 
-	@Override
 	public Object getPrincipal() {
 	    Object result = principal;
 

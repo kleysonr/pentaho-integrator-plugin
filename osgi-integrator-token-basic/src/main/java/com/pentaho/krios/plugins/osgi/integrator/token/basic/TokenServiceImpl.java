@@ -3,7 +3,7 @@ package com.pentaho.krios.plugins.osgi.integrator.token.basic;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.pentaho.krios.plugins.osgi.integrator.manager.services.ITokenService;
+import com.pentaho.krios.plugins.osgi.integrator.common.services.ITokenService;
 
 public class TokenServiceImpl implements ITokenService {
 	

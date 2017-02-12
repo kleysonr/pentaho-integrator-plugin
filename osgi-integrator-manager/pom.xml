@@ -3,18 +3,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <properties>
-    <project.groupId>com.pentaho.krios.plugins.osgi.integrator.manager</project.groupId>
-    <project.artifactId>integrator-manager</project.artifactId>
-    <project.version>1.0.0</project.version>
     <project.author>Kleyson Rios</project.author>
     <project.url>http://kleysonrios.blogspot.com</project.url>
   	<project.description>OSGI Integrator Manager Plugin</project.description>
   	<plugin.activator.class>com.pentaho.krios.plugins.osgi.integrator.manager.Activator</plugin.activator.class>
   </properties>
 
-  <groupId>${project.groupId}</groupId>
-  <artifactId>${project.artifactId}</artifactId>
-  <version>${project.version}</version>
+  <groupId>com.pentaho.krios.plugins.osgi.integrator.manager</groupId>
+  <artifactId>osgi-integrator-manager</artifactId>
+  <version>1.0.0</version>
   <packaging>bundle</packaging>
   
   <parent>
@@ -40,7 +37,7 @@
 			<Bundle-Vendor>${project.author}</Bundle-Vendor>
 			<Bundle-Description>${project.description}</Bundle-Description>
 			<Bundle-DocURL>${project.url}</Bundle-DocURL>
-            <Export-Package>com.pentaho.krios.plugins.osgi.integrator.manager.services</Export-Package>
+            <Export-Package>com.pentaho.krios.plugins.osgi.integrator.common.services</Export-Package>
             <Import-Package>org.osgi.framework, org.osgi.service.cm, org.apache.log4j, *</Import-Package>
           </instructions>
         </configuration>
@@ -52,6 +49,12 @@
   <url>${project.url}</url>
   
   <dependencies>
+  
+    <dependency>
+      	<groupId>com.pentaho.krios.plugins.osgi.integrator.common.services</groupId>
+      	<artifactId>osgi-integrator-common</artifactId>
+      	<version>1.0.0-SNAPSHOT</version>
+    </dependency>   
   
 	<dependency>
 	    <groupId>javax.servlet</groupId>

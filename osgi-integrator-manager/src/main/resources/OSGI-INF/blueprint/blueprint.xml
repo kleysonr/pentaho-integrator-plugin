@@ -27,10 +27,10 @@
 
   <!-- Register the Integrator Manager Service -->  
   <service id="integratorManagerService" ref="integratorManager"
-    interface="com.pentaho.krios.plugins.osgi.integrator.manager.services.IntegratorManagerService" />
+    interface="com.pentaho.krios.plugins.osgi.integrator.common.services.IntegratorManagerService" />
     
   <!-- List of Token Providers -->
   <reference-list id="tokenProviders" availability="optional"
-	interface="com.pentaho.krios.plugins.osgi.integrator.manager.services.ITokenService" />	
+	interface="com.pentaho.krios.plugins.osgi.integrator.common.services.ITokenService" />	
 
 </blueprint>

@@ -1,9 +1,6 @@
-package com.pentaho.krios.plugins.osgi.integrator.manager.services;
+package com.pentaho.krios.plugins.osgi.integrator.common.services;
 
 import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 /*
  * Plugins to provide a new Token provider must implement
