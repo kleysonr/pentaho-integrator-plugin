@@ -19,7 +19,7 @@
 
   <parent>
     <groupId>com.pentaho.krios.plugins.osgi.integrator</groupId>
-    <artifactId>integrator-parent</artifactId>
+    <artifactId>osgi-integrator-parent</artifactId>
     <version>1.0.0</version>
     <relativePath>../pom.xml</relativePath>
   </parent>  
@@ -56,7 +56,7 @@
     <dependency>
       	<groupId>com.pentaho.krios.plugins.osgi.integrator.common.services</groupId>
       	<artifactId>osgi-integrator-common</artifactId>
-      	<version>1.0.0-SNAPSHOT</version>
+      	<version>1.0.0</version>
     </dependency>   
       
 	<dependency>
