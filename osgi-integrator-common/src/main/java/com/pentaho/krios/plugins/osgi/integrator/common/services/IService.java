@@ -2,6 +2,10 @@ package com.pentaho.krios.plugins.osgi.integrator.common.services;
 
 import java.util.Map;
 
+/*
+ * Methods that a integrator plugin MUST provide.
+ */
+
 public interface IService {
 	
 	/*

@@ -132,9 +132,9 @@ public class IntegratorManagerServicesImpl implements IntegratorManagerService {
 		this.active = active;
 		
 		if (active)
-			Activator.getSecurityHelper().enableCustomHttpFirewall();
+			Activator.getSecurityHelper().enableFilter();
 		else
-			Activator.getSecurityHelper().disableCustomHttpFirewall();
+			Activator.getSecurityHelper().disableFilter();
 	}
 
 }

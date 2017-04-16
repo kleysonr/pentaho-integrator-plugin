@@ -27,7 +27,7 @@ public class AuthenticationHelper {
 	
 	private static ApplicationEventPublisher eventPublisher;
 
-	// Cloned from SecurityHelper and adapted to add a default location to the session
+	// Cloned from SecurityHelper and adapted to add a default locale to the session
 	public static UserSession becomeUser( final String principalName ) 
 	{
 		UserSession session = null;

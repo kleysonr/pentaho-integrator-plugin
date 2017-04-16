@@ -17,7 +17,7 @@ import com.pentaho.krios.plugins.osgi.integrator.manager.models.Plugin;
  * REST endpoints' base URI is <webapp>/osgi/cxf/<ADDRESS>/<ENDPOINT_TERMINATION>
  * @see org.pentaho.platform.web.servlet.JAXRSPluginServlet
  */
-@Path( "/" )
+
 public class RestAdmin {
 	
 	@GET

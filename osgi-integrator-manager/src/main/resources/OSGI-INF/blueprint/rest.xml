@@ -23,7 +23,6 @@
         These services can speak a variety of protocols such as SOAP, XML/HTTP, RESTful HTTP,
         or CORBA and work over a variety of transports such as HTTP, JMS or JBI.
     -->
-    <cxf:bus id="integratorManagerCxfBus" />
 
     <!-- this translates to /<webapp_name>/osgi/cxf/<ADDRESS>/<ENDPOINT_TERMINATION> -->
     <jaxrs:server id="bp.cxf.jaxrs.service.endpoint" address="/integrator">

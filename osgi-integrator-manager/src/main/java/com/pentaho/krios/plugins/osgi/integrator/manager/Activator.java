@@ -4,7 +4,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.pentaho.platform.engine.security.SecurityHelper;
 
-import com.pentaho.krios.plugins.osgi.integrator.manager.filterchain.FilterChainProxyHelper;
+import com.pentaho.krios.plugins.osgi.integrator.manager.helpers.FilterChainProxyHelper;
 
 public class Activator implements BundleActivator {
 	
@@ -28,7 +28,7 @@ public class Activator implements BundleActivator {
 	public void stop(BundleContext context) throws Exception 
 	{
 		System.out.println("Stopping " + context.getBundle().getHeaders().get("Bundle-Description") + "  Version: "+ context.getBundle().getHeaders().get("Bundle-Version"));
-		securityHelper.disableCustomHttpFirewall();
+		securityHelper.disableFilter();
 	}
 	
 	public static BundleContext getContext()

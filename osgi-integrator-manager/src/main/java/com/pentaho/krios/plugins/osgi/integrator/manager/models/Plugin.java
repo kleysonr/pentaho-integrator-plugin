@@ -2,6 +2,10 @@ package com.pentaho.krios.plugins.osgi.integrator.manager.models;
 
 import java.util.Map;
 
+/*
+ * Output template for the RestAdmin API
+ */
+
 public class Plugin {
 	
 	/*

@@ -1,12 +1,6 @@
-package com.pentaho.krios.plugins.osgi.integrator.manager.filterchain;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
+package com.pentaho.krios.plugins.osgi.integrator.manager.filter;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.pentaho.platform.engine.core.system.PentahoSessionHolder;
@@ -14,25 +8,36 @@ import org.pentaho.platform.engine.core.system.PentahoSystem;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedCredentialsNotFoundException;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.FirewalledRequest;
-import org.springframework.security.web.firewall.RequestRejectedException;
+import org.springframework.util.Assert;
+import org.springframework.web.filter.GenericFilterBean;
 
+import com.pentaho.krios.plugins.osgi.integrator.common.services.ITokenService;
 import com.pentaho.krios.plugins.osgi.integrator.manager.IntegratorManagerServicesImpl;
 import com.pentaho.krios.plugins.osgi.integrator.manager.helpers.AuthenticationHelper;
-import com.pentaho.krios.plugins.osgi.integrator.common.services.ITokenService;
 
-public class CustomHttpFirewall extends DefaultHttpFirewall {
-	
-	//static Logger logger = Logger.getLogger (Activator.class.getName());
-	
-	@Override
-	public FirewalledRequest getFirewalledRequest(HttpServletRequest request) throws RequestRejectedException 
-	{
-		// Perform default URL validation
-		FirewalledRequest fwr = super.getFirewalledRequest(request);
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
+
+public class TokenAuthenticationFilter extends GenericFilterBean {
+	
+    @SuppressWarnings("unused")
+	private static final long serialVersionUID = 1280540339612668867L;
+
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		
 		// Get all security headers from the request
 		HashMap<String, String[]> secParams = new HashMap<String, String[]>();
 		Map<String, String[]> queryParams = request.getParameterMap();
@@ -65,7 +70,7 @@ public class CustomHttpFirewall extends DefaultHttpFirewall {
 					{
 						AuthenticationHelper.becomeUser(principal);
 						
-						HttpSession httpSession = request.getSession();
+						HttpSession httpSession = ((HttpServletRequest) request).getSession();
 			            httpSession.setAttribute( PentahoSystem.PENTAHO_SESSION_KEY, PentahoSessionHolder.getSession() );
 	
 			            // definition of anonymous inner class
@@ -96,14 +101,10 @@ public class CustomHttpFirewall extends DefaultHttpFirewall {
 			}
 		}
 		
-		System.out.println("********** CustomHttpFirewall" + request.getRequestURL().toString());
+		System.out.println("********** CustomHttpFirewall" + ((HttpServletRequest) request).getRequestURL().toString());
 		 
-		return fwr;
-	}	
-	
-	@Override
-	public HttpServletResponse getFirewalledResponse(HttpServletResponse response) {
-		return super.getFirewalledResponse(response);
-	}	
+		chain.doFilter(request, response);
 
+	}
+	
 }

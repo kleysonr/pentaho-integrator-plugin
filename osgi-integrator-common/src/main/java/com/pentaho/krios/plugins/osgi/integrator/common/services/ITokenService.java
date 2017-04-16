@@ -3,8 +3,7 @@ package com.pentaho.krios.plugins.osgi.integrator.common.services;
 import java.util.HashMap;
 
 /*
- * Plugins to provide a new Token provider must implement
- * this interface.
+ * Implement this interface to provide a new token authentication service.
  */
 
 public interface ITokenService extends IService {
