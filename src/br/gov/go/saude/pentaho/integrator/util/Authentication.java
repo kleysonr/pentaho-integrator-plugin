@@ -21,20 +21,20 @@ import br.gov.go.saude.pentaho.integrator.security.Auth;
 
 public class Authentication {
 
-	public static Map<String, Object> authenticate(HttpServletRequest request, HttpServletResponse response, UriInfo info, String myType, String myToken, String myUrlEncoded) 
-	{
+	public static Map<String, Object> authenticate(HttpServletRequest request, HttpServletResponse response,
+			UriInfo info, String myType, String myToken, String myUrlEncoded) {
 		AuthenticationReturn ret = new AuthenticationReturn(true, 200, "", null);
-		
+
 		// Checking parameters
-		if( "".equalsIgnoreCase(myType) || myType == null || "undefined".equalsIgnoreCase(myType) || "".equalsIgnoreCase(myToken) || myToken == null || "undefined".equalsIgnoreCase(myToken) || "".equalsIgnoreCase(myUrlEncoded) || myUrlEncoded == null || "undefined".equalsIgnoreCase(myUrlEncoded) ) 
-		{
+		if ("".equalsIgnoreCase(myType) || myType == null || "undefined".equalsIgnoreCase(myType)
+				|| "".equalsIgnoreCase(myToken) || myToken == null || "undefined".equalsIgnoreCase(myToken)
+				|| "".equalsIgnoreCase(myUrlEncoded) || myUrlEncoded == null
+				|| "undefined".equalsIgnoreCase(myUrlEncoded)) {
 			ret.setOk(false);
 			ret.setStatus(400);
 			ret.setMessage("Integrator Error: Missing type, token and/or urlEncoded.");
-		}
-		else
-		{
-		
+		} else {
+
 			try {
 
 				String principalName = null;
@@ -43,53 +43,49 @@ public class Authentication {
 				String authClasseName = "br.gov.go.saude.pentaho.integrator.security.Auth";
 				Class<?> authClasse = Class.forName(authClasseName);
 				Auth auth = (Auth) authClasse.newInstance();
-				Method authMethod = auth.getClass().getMethod("Auth" + StringUtils.capitalize(myType), String.class, String.class); 
+				Method authMethod = auth.getClass().getMethod("Auth" + StringUtils.capitalize(myType), String.class,
+						String.class);
 				principalName = (String) authMethod.invoke(authClasse, myToken, myUrlEncoded);
-				
-				// For simple CORS requests, the server only needs to add these 2 header parameters that allow access to any client.
+
+				// For simple CORS requests, the server only needs to add these 2 header
+				// parameters that allow access to any client.
 				response.setHeader("Access-Control-Allow-Origin", "*");
 				response.setHeader("Access-Control-Allow-Credentials", "true");
-				
-				if (principalName == null) 
-				{
+
+				if (principalName == null) {
 					ret.setOk(false);
 					ret.setStatus(400);
 					ret.setMessage("Integrator Error: Invalid token.");
-				} 
-				else 
-				{
-					if ( AuthenticationHelper.becomeUser( principalName ) != null )
-					{
+				} else {
+					if (AuthenticationHelper.becomeUser(principalName) != null) {
 						return ret.getMap();
-					} 
-					else 
-					{
+					} else {
 						ret.setOk(false);
 						ret.setStatus(400);
 						ret.setMessage("Integrator Error: Invalid user.");
 					}
 				}
-				
+
 			} catch (NoSuchMethodException e) {
-				
+
 				e.printStackTrace();
 
 				ret.setOk(false);
 				ret.setStatus(501);
 				ret.setMessage("Integrator Error: Type not implemented.");
-		
+
 			} catch (Exception e) {
-				
+
 				e.printStackTrace();
 
 				ret.setOk(false);
 				ret.setStatus(500);
 				ret.setMessage("Integrator Error: ERROR.");
-				
-			} 				
+
+			}
 
 		}
-		
+
 		return ret.getMap();
 	}
 
