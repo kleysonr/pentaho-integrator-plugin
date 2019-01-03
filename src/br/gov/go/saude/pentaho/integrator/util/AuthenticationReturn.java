@@ -18,9 +18,8 @@ public class AuthenticationReturn {
 	Integer status;
 	String message;
 	URI url;
-	
-	public AuthenticationReturn(Boolean ok, Integer status, String message, URI url) 
-	{
+
+	public AuthenticationReturn(Boolean ok, Integer status, String message, URI url) {
 		this.status = status;
 		this.message = message;
 		this.ok = ok;
@@ -59,14 +58,13 @@ public class AuthenticationReturn {
 		this.url = url;
 	}
 
-	
 	public Map<String, Object> getMap() {
 		HashMap<String, Object> map = new HashMap<>();
-		
+
 		map.put("status", status);
 		map.put("message", message);
 		map.put("ok", ok);
-		
+
 		return map;
 	}
 }

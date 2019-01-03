@@ -24,20 +24,23 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.Logger;
 
 import br.gov.go.saude.pentaho.integrator.util.Authentication;
-
 
 @Path("/integrator/api")
 public class IntegratorREST {
 
-	@Context private HttpServletRequest request;
-	@Context private HttpServletResponse response;
+	final static Logger logger = Logger.getLogger(IntegratorREST.class);
+
+	@Context
+	private HttpServletRequest request;
+	@Context
+	private HttpServletResponse response;
 
 	@GET
 	@Path("/go")
-	public Response redirectLink(@Context UriInfo info) throws URISyntaxException 
-	{
+	public Response redirectLink(@Context UriInfo info) throws URISyntaxException {
 
 		// Get Query Parameters
 		String myType = "";
@@ -45,28 +48,27 @@ public class IntegratorREST {
 
 		String myToken = "";
 		myToken = info.getQueryParameters().getFirst("token");
-		
+
 		String myUrlEncoded = "";
 		myUrlEncoded = info.getQueryParameters().getFirst("urlEncoded");
 
 		// Call Authenticate Method
-		Map<String, Object> ret =  Authentication.authenticate(request, response, info, myType, myToken, myUrlEncoded);
-		
+		Map<String, Object> ret = Authentication.authenticate(request, response, info, myType, myToken, myUrlEncoded);
+
+		logger.debug("return Call Authentication:" + ret);
+
 		// Authentication Success
 		if ((boolean) ret.get("ok")) {
 
-			String myUrl = new String( Base64.decodeBase64(myUrlEncoded.getBytes()) );
+			String myUrl = new String(Base64.decodeBase64(myUrlEncoded.getBytes()));
 
 			URI pentahoBaseUrl = info.getBaseUri().resolve("../../" + myUrl);
-			
+
 			return Response.temporaryRedirect(pentahoBaseUrl).build();
-		}
-		else 
-		{
+		} else {
 			return Response.status((Integer) ret.get("status")).type("text/plain").entity(ret.get("message")).build();
 		}
-		
-		
+
 	}
 
 }

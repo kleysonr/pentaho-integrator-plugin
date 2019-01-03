@@ -16,46 +16,39 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
-
 @SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 public class IntegratorTemplateFactory implements BeanFactoryPostProcessor {
 
-	private DataSource jndiDatabaseConn = null; 
+	private DataSource jndiDatabaseConn = null;
 
 	@Override
-	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException 
-	{
-		
+	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+
 		initPluginProperties();
 		initDatabaseConn();
 
 	}
-	
-	private void initPluginProperties() 
-	{
-		PluginConfig.getInstance().init();	
+
+	private void initPluginProperties() {
+		PluginConfig.getInstance().init();
 	}
 
-	private void initDatabaseConn() 
-	{
+	private void initDatabaseConn() {
 		String jndiName = PluginConfig.props.getProperty("DatabaseJndiName");
-				
-		if (getJndiDatabaseConn() != null) 
-		{ 
-			return; 
+
+		if (getJndiDatabaseConn() != null) {
+			return;
 		}
-		
-		try 
-		{
-			IDBDatasourceService datasourceService = PentahoSystem.getObjectFactory().get(IDBDatasourceService.class, null);
-			setJndiDatabaseConn( datasourceService.getDataSource(jndiName) );
-		} 
-		catch (Exception e) 
-		{
+
+		try {
+			IDBDatasourceService datasourceService = PentahoSystem.getObjectFactory().get(IDBDatasourceService.class,
+					null);
+			setJndiDatabaseConn(datasourceService.getDataSource(jndiName));
+		} catch (Exception e) {
 			System.out.println("Integrator Error: Couldn't load jndi database datasource.");
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public DataSource getJndiDatabaseConn() {
